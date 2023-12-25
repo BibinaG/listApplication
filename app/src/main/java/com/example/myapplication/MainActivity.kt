@@ -1,13 +1,14 @@
 package com.example.myapplication
 
-import android.app.IntentService
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.pagination.PPActivity
+import com.example.myapplication.dialog.PersistantActivity
+import com.example.myapplication.pagination.view.PPActivity
+
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initViews()
-
 
     }
 

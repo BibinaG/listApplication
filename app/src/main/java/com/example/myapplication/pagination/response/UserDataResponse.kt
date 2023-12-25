@@ -3,7 +3,7 @@ package com.example.myapplication.pagination.response
 import com.google.gson.annotations.SerializedName
 
 data class UserDataResponse(
-    @SerializedName("data") val `data`: List<Data>,
+    @SerializedName("data") val data: List<Data>,
     @SerializedName("page") val page: Int,
     @SerializedName("per_page") val per_page: Int,
     @SerializedName("support") val support: Support,

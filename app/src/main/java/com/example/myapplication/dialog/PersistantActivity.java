@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.dialog;
 
 
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 public class PersistantActivity extends AppCompatActivity {

@@ -11,36 +11,39 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.databinding.UserRvItemBinding;
 import com.example.myapplication.pagination.model.UserModel;
+import com.example.myapplication.pagination.response.Data;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.ViewHolder> {
-    private ArrayList<UserModel> userModalArrayList;
+    private ArrayList<Data> userModalArrayList;
     private Context context;
 
     // creating a constructor.
-    public AdapterUser(ArrayList<UserModel> userModalArrayList, Context context) {
+    public AdapterUser(ArrayList<Data> userModalArrayList, Context context) {
         this.userModalArrayList = userModalArrayList;
         this.context = context;
     }
 
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.user_rv_item, parent, false);
-        return new ViewHolder(view);
+        UserRvItemBinding userRvItemBinding = UserRvItemBinding.inflate(LayoutInflater.from(context), parent,
+                false);
+        return new ViewHolder(userRvItemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        UserModel userModal = userModalArrayList.get(position);
-        holder.firstNameTV.setText(userModal.getFirst_name());
-        holder.lastNameTV.setText(userModal.getLast_name());
-        holder.emailTV.setText(userModal.getEmail());
-
-        Picasso.get().load(userModal.getAvatar()).into(holder.userIV);
+        Data userModal = userModalArrayList.get(position);
+        holder.binding.idTVEmail.setText(userModal.getFirst_name());
+        holder.binding.idTVLastName.setText(userModal.getLast_name());
+        holder.binding.idTVEmail.setText(userModal.getEmail());
+        Picasso.get().load(userModal.getAvatar()).into(holder.binding.idIVUser);
     }
 
     @Override
@@ -49,18 +52,12 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // creating a variable for our text view and image view.
-        private TextView firstNameTV, lastNameTV, emailTV;
-        private ImageView userIV;
+        public UserRvItemBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(@NonNull UserRvItemBinding itemView) {
+            super(itemView.getRoot());
+            this.binding = itemView;
 
-            // initializing our variables.
-            firstNameTV = itemView.findViewById(R.id.idTVFirstName);
-            lastNameTV = itemView.findViewById(R.id.idTVLastName);
-            emailTV = itemView.findViewById(R.id.idTVEmail);
-            userIV = itemView.findViewById(R.id.idIVUser);
         }
     }
 }
