@@ -48,23 +48,23 @@ class PaginationActivity() : AppCompatActivity() {
             binding.idPBLoading.setVisibility(View.GONE);
             return;
         }
-        ApiClient.getInstance().getUsers(page).enqueue(object : Callback<UserDataResponse> {
-            override fun onResponse(
-                call: Call<UserDataResponse>,
-                response: Response<UserDataResponse>
-            ) {
-                binding.idPBLoading.visibility = View.GONE
-                if (response.isSuccessful) {
-                    val user = AdapterUser(
-                        response.body()!!.data as java.util.ArrayList<Data?>,
-                        this@PaginationActivity
-                    )
-                    binding.idRVUsers.adapter = user
-                }
-            }
-
-            override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {}
-        })
+//        ApiClient.instance.getUsers(page).enqueue(object : Callback<UserDataResponse> {
+//            override fun onResponse(
+//                call: Call<UserDataResponse>,
+//                response: Response<UserDataResponse>
+//            ) {
+//                binding.idPBLoading.visibility = View.GONE
+//                if (response.isSuccessful) {
+//                    val user = AdapterUser(
+//                        response.body()!!.data as java.util.ArrayList<Data?>,
+//                        this@PaginationActivity
+//                    )
+//                    binding.idRVUsers.adapter = user
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {}
+//        })
 
 
     }
