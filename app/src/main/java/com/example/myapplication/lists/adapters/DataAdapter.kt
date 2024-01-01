@@ -1,5 +1,6 @@
 package com.example.myapplication.lists.adapters
 
+import android.service.autofill.OnClickAction
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +9,8 @@ import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.fragments.FragOne
 
 class DataAdapter(
-    private val context: FragOne,
-    private val mList: List<EmployeData>
+    private val mList: List<EmployeData>,
+    private val onClickAction: (EmployeData) -> Unit
 ) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
@@ -33,10 +34,8 @@ class DataAdapter(
         holder.binding.tvName.text = data.employeeName
 
         holder.binding.like.setOnClickListener {
-            run {
-                context.retrieveLikedData(data)
+            onClickAction(data)
 
-            }
         }
 
 

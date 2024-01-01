@@ -1,10 +1,13 @@
 package com.example.myapplication.lists
 
+import android.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityListBinding
 import com.example.myapplication.lists.adapters.ViewPagersAdapter
+import com.example.myapplication.lists.fragments.FragTwo
 import com.google.android.material.tabs.TabLayoutMediator
+
 
 class ListActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -28,5 +31,7 @@ class ListActivity : AppCompatActivity() {
         val adapter = ViewPagersAdapter(this)
         binding.viewPager.adapter = adapter
     }
+
+
 
 }

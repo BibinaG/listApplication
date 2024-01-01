@@ -2,6 +2,7 @@ package com.example.myapplication.pagination.network
 
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.lists.DummyResponse
+import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.pagination.response.UserDataResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

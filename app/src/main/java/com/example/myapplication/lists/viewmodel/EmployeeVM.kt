@@ -1,12 +1,15 @@
 package com.example.myapplication.lists.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.UiState
 import com.example.myapplication.lists.DummyResponse
+import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.repo.EmployeeRepo
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 class EmployeeVM() : ViewModel() {
@@ -22,5 +25,10 @@ class EmployeeVM() : ViewModel() {
             _employeeData.value = repo.getEmployeeDetails()
         }
     }
+
+    fun addEmployeData(data: List<EmployeData>) {
+        Log.e("Check", " addEmployeData: " + Gson().toJson(data))
+    }
+
 
 }

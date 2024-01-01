@@ -40,15 +40,12 @@ class FragOne : Fragment() {
             when (employeeDetails) {
                 is UiState.Loading -> {
                 }
+
                 is UiState.Success -> {
-                    adapter = DataAdapter(FragOne(), employeeDetails.data?.data!!)
-                    binding.rvData.layoutManager = LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.VERTICAL, false
-                    )
-                    binding.rvData.adapter = adapter
+                    employeeDetails.data?.data?.let { setupAdapter(it) }
 
                 }
+
                 is UiState.Error -> {}
 
                 else -> {}
@@ -57,9 +54,17 @@ class FragOne : Fragment() {
 
     }
 
-    fun retrieveLikedData(data: EmployeData) {
-        Toast.makeText(requireContext(), "Toast clicked", Toast.LENGTH_SHORT).show()
+    private fun setupAdapter(dataList: List<EmployeData>) {
+        binding.rvData.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = DataAdapter(
+                mList = dataList
+            ) {
+                Toast.makeText(requireContext(), "Hello BIBINA", Toast.LENGTH_SHORT).show()
+                employeeViewModel.addEmployeData(dataList)
+            }
 
+        }
     }
 
 
