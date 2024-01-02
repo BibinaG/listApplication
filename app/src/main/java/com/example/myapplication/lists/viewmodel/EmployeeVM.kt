@@ -19,6 +19,9 @@ class EmployeeVM() : ViewModel() {
     private val _employeeData = MutableLiveData<UiState<DummyResponse>>()
     val employeeDetails: LiveData<UiState<DummyResponse>> = _employeeData
 
+    private val _likedData = MutableLiveData<UiState<DummyResponse>>()
+    val likedData: LiveData<UiState<DummyResponse>> = _likedData
+
     fun fetData() {
         viewModelScope.launch {
             _employeeData.value = UiState.Loading()
