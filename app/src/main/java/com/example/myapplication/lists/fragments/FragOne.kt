@@ -59,13 +59,13 @@ class FragOne : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = DataAdapter(
                 mList = dataList
-            ) {
-                Toast.makeText(requireContext(), "Hello BIBINA", Toast.LENGTH_SHORT).show()
-                employeeViewModel.addEmployeData(dataList)
+            ) {clickedData->
+                employeeViewModel.addEmployeData(clickedData)
             }
 
         }
     }
+
 
 
 }

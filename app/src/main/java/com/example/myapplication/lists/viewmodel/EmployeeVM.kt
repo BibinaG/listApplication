@@ -19,8 +19,8 @@ class EmployeeVM() : ViewModel() {
     private val _employeeData = MutableLiveData<UiState<DummyResponse>>()
     val employeeDetails: LiveData<UiState<DummyResponse>> = _employeeData
 
-    private val _likedData = MutableLiveData<UiState<DummyResponse>>()
-    val likedData: LiveData<UiState<DummyResponse>> = _likedData
+    private val _likedData = MutableLiveData<UiState<EmployeData>>()
+    val likedData: LiveData<UiState<EmployeData>> = _likedData
 
     fun fetData() {
         viewModelScope.launch {
@@ -29,7 +29,8 @@ class EmployeeVM() : ViewModel() {
         }
     }
 
-    fun addEmployeData(data: List<EmployeData>) {
+    fun addEmployeData(data: EmployeData) {
+        _likedData.value = UiState.Success(data)
         Log.e("Check", " addEmployeData: " + Gson().toJson(data))
     }
 

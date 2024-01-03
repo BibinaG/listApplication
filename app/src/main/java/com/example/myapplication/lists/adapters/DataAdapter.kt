@@ -1,12 +1,14 @@
 package com.example.myapplication.lists.adapters
 
 import android.service.autofill.OnClickAction
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.EmpoloyeListLayoutBinding
 import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.fragments.FragOne
+import com.google.gson.Gson
 
 class DataAdapter(
     private val mList: List<EmployeData>,
@@ -28,7 +30,6 @@ class DataAdapter(
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = mList[position]
-//        holder.imageView.setImageResource(data.profileImage)
         holder.binding.Age.text = data.employeeAge.toString()
         holder.binding.Salary.text = data.employeeSalary.toString()
         holder.binding.tvName.text = data.employeeName
