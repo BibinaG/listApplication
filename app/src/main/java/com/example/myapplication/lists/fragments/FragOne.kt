@@ -61,7 +61,7 @@ class FragOne : Fragment() {
                 mList = dataList
             ) {clickedData->
 //                employeeViewModel.addEmployeData(clickedData)
-                employeeViewModel.insert(requireContext(),clickedData)
+                employeeViewModel.addEmployee(clickedData)
             }
 
         }

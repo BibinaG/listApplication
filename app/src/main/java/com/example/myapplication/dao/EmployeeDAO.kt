@@ -13,6 +13,6 @@ interface EmployeeDAO {
     suspend fun insertIntoEMData(emData: EmployeData)
 
     @Query("SELECT * FROM employee")
-    suspend fun getAllEmployeeDetails(): LiveData<List<EmployeData>>
+    fun getAllEmployeeDetails(): LiveData<List<EmployeData>>
 
 }
