@@ -1,13 +1,12 @@
 package com.example.myapplication.lists.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentFragOneBinding
+import com.example.myapplication.dao.EMDatabase
 import com.example.myapplication.databinding.FragmentFragTwoBinding
 import com.example.myapplication.lists.viewmodel.EmployeeVM
 
@@ -30,17 +29,10 @@ class FragTwo : Fragment() {
     }
 
     private fun initObserver() {
-        employeeViewModel.likedData.observe(this) { likedData ->
-            likedData ?: return@observe
-            when (likedData) {
-
-                else -> {}
-            }
 
 
-        }
-    })
+    }
 
-}
+
 
 }

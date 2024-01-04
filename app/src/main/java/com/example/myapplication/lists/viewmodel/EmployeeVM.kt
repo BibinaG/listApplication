@@ -1,15 +1,15 @@
 package com.example.myapplication.lists.viewmodel
 
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.UiState
+import com.example.myapplication.dao.EMDatabase
 import com.example.myapplication.lists.DummyResponse
 import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.repo.EmployeeRepo
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 class EmployeeVM() : ViewModel() {
@@ -19,8 +19,6 @@ class EmployeeVM() : ViewModel() {
     private val _employeeData = MutableLiveData<UiState<DummyResponse>>()
     val employeeDetails: LiveData<UiState<DummyResponse>> = _employeeData
 
-    private val _likedData = MutableLiveData<UiState<EmployeData>>()
-    val likedData: LiveData<UiState<EmployeData>> = _likedData
 
     fun fetData() {
         viewModelScope.launch {
@@ -29,10 +27,10 @@ class EmployeeVM() : ViewModel() {
         }
     }
 
-    fun addEmployeData(data: EmployeData) {
-        _likedData.value = UiState.Success(data)
-        Log.e("Check", " addEmployeData: " + Gson().toJson(data))
-    }
+    fun insert(context: Context, employeData: EmployeData) =
+        viewModelScope.launch {
+            EMDatabase.getDatabase(context = context).employeeDAO().insertIntoEMData(employeData)
+        }
 
 
 }
