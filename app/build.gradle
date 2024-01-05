@@ -2,18 +2,19 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+
 //    apply plugin: 'kotlin-kapt'
 }
 
 
 android {
     namespace 'com.example.myapplication'
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.myapplication"
         minSdk 21
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -85,11 +86,11 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.room:room-runtime:2.4.0"
-    annotationProcessor "androidx.room:room-compiler:2.4.0"
-
-//    implementation 'io.reactivex.rxjava2:rxjava:2.2.16'
-//    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    def room_version = "2.5.2"
+    // Room dependencies
+    implementation("androidx.room:room-runtime:$room_version") // Use the appropriate version
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation 'androidx.room:room-ktx:2.2.1'
 
 }

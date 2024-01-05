@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.EmpoloyeListLayoutBinding
 import com.example.myapplication.lists.EmployeData
 
-class DataAdapter(
+class LikedDataAdapter(
     private var mList: List<EmployeData>,
     private val onClickAction: (EmployeData) -> Unit
 ) :
-    RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+    RecyclerView.Adapter<LikedDataAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,16 +26,17 @@ class DataAdapter(
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = mList[position]
+        var data = mList[position]
         holder.binding.Age.text = data.employeeAge.toString()
         holder.binding.Salary.text = data.employeeSalary.toString()
         holder.binding.tvName.text = data.employeeName
-        holder.binding.like.visibility = View.VISIBLE
-        holder.binding.deleteButton.visibility = View.GONE
+        holder.binding.deleteButton.visibility = View.VISIBLE
+        holder.binding.like.visibility = View.GONE
 
-        holder.binding.like.setOnClickListener {
+
+        holder.binding.deleteButton.setOnClickListener {
             onClickAction(data)
-            addItems(data)
+            remove(data)
 
         }
 
@@ -54,7 +55,14 @@ class DataAdapter(
 
     }
 
-    fun addItems(newItems: EmployeData) {
+
+    fun remove(item: EmployeData) {
+        val list = mList.toMutableList()
+        list.remove(item)
+        mList = list
+        notifyDataSetChanged()
 
     }
+
+
 }
