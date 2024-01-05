@@ -37,7 +37,7 @@ class FragTwo : Fragment() {
 
     private fun initObserver() {
         employeeVM.getEmployeeData.observe(this) { addedData ->
-            {
+            run {
                 Log.e("initObserver: ", Gson().toJson(addedData))
                 binding.rvLikedData.apply {
                     layoutManager = LinearLayoutManager(requireContext())

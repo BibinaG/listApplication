@@ -39,5 +39,9 @@ class EmployeeVM(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun setValue(employeData: EmployeData) {
+
+    }
+
 
 }
