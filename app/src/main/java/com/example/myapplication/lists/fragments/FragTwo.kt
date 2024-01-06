@@ -36,26 +36,13 @@ class FragTwo : Fragment() {
     }
 
     private fun initObserver() {
-        employeeVM.getEmployeeData.observe(this) { addedData ->
-            run {
-                Log.e("initObserver: ", Gson().toJson(addedData))
-                binding.rvLikedData.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = LikedDataAdapter(addedData) { em ->
-                    }
-                }
-            }
-        }
-        LiveDataUtil.observeOnce(
-            EMDatabase.getDatabase(requireContext()).employeeDAO().getAllEmployeeDetails()
+        LiveDataUtil.observeOnce(EMDatabase.getDatabase(requireContext()).employeeDAO().getAllEmployeeDetails()
         ) {
             binding.rvLikedData.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                adapter = LikedDataAdapter(it) { em ->
-                    Toast.makeText(requireContext(), "Item Removed!!", Toast.LENGTH_SHORT).show()
-                }
+                adapter = LikedDataAdapter(it)
             }
-
+//
         }
 
 

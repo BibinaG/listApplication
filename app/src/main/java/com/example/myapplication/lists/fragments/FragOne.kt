@@ -74,7 +74,6 @@ class FragOne : Fragment() {
             ) { clickedData ->
                 Toast.makeText(requireContext(), "Liked Employee", Toast.LENGTH_SHORT).show()
                 employeeViewModel.addData(clickedData)
-
                 GlobalScope.launch(Dispatchers.IO) {
                     EMDatabase.getDatabase(requireContext()).employeeDAO()
                         .insertIntoEMData(clickedData)

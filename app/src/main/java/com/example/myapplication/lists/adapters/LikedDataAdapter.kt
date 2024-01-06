@@ -9,7 +9,6 @@ import com.example.myapplication.lists.EmployeData
 
 class LikedDataAdapter(
     private var mList: List<EmployeData>,
-    private val onClickAction: (EmployeData) -> Unit
 ) :
     RecyclerView.Adapter<LikedDataAdapter.ViewHolder>() {
 
@@ -35,7 +34,6 @@ class LikedDataAdapter(
 
 
         holder.binding.deleteButton.setOnClickListener {
-            onClickAction(data)
             remove(data)
 
         }

@@ -10,8 +10,7 @@ import com.example.myapplication.lists.EmployeData
 class DataAdapter(
     private var mList: List<EmployeData>,
     private val onClickAction: (EmployeData) -> Unit
-) :
-    RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +34,6 @@ class DataAdapter(
 
         holder.binding.like.setOnClickListener {
             onClickAction(data)
-            addItems(data)
 
         }
 
@@ -55,6 +53,8 @@ class DataAdapter(
     }
 
     fun addItems(newItems: EmployeData) {
-
+        val list = mList.toMutableList()
+        list.addAll(listOf(newItems))
+        mList = list
     }
 }

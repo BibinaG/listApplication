@@ -21,7 +21,7 @@ class EmployeeVM(application: Application) : AndroidViewModel(application) {
 
 
     private val _emData = MutableLiveData<List<EmployeData>>()
-    val getEmployeeData: LiveData<List<EmployeData>> = _emData
+    val getEmployeeLikedData: LiveData<List<EmployeData>> = _emData
 
 
     fun fetData() {
