@@ -1,7 +1,6 @@
 package com.example.myapplication.lists.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.example.myapplication.databinding.FragmentFragOneBinding
 import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.adapters.DataAdapter
 import com.example.myapplication.lists.viewmodel.EmployeeVM
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,10 +32,15 @@ class FragOne : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         employeeViewModel.fetData()
         initObserver()
-        return rootView
+
+
     }
 
     private fun initObserver() {
@@ -73,17 +76,19 @@ class FragOne : Fragment() {
                 mList = dataList
             ) { clickedData ->
                 Toast.makeText(requireContext(), "Liked Employee", Toast.LENGTH_SHORT).show()
-                employeeViewModel.addData(clickedData)
+                employeeViewModel.insertValueInDatabase(clickedData)
+//                employeeViewModel.addData(clickedData)
                 GlobalScope.launch(Dispatchers.IO) {
                     EMDatabase.getDatabase(requireContext()).employeeDAO()
                         .insertIntoEMData(clickedData)
 
 
                 }
+
             }
 
         }
     }
-
-
 }
+
+

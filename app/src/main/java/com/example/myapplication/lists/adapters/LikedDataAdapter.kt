@@ -9,8 +9,7 @@ import com.example.myapplication.lists.EmployeData
 
 class LikedDataAdapter(
     private var mList: List<EmployeData>,
-) :
-    RecyclerView.Adapter<LikedDataAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<LikedDataAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

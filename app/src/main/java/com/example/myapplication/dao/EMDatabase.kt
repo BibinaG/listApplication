@@ -6,14 +6,27 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.myapplication.lists.EmployeData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Database(entities = [EmployeData::class], version = 1, exportSchema = false)
 abstract class EMDatabase : RoomDatabase() {
     abstract fun employeeDAO(): EmployeeDAO
+    private class EmployeeDatabaseCallback(
+        private val scope: CoroutineScope
+    ) : RoomDatabase.Callback() {
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            INSTANCE?.let { database ->
+                scope.launch {
+                    val emDAO = database.employeeDAO()
+                    emDAO.deleteAll()
+                }
+            }
+        }
+    }
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
         @Volatile
         private var INSTANCE: EMDatabase? = null
 
@@ -31,5 +44,9 @@ abstract class EMDatabase : RoomDatabase() {
                 instance
             }
         }
+
+
+
+
     }
 }
