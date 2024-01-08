@@ -2,16 +2,24 @@ package com.example.myapplication.lists
 
 import android.R
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import com.example.myapplication.EmployeeApp
 import com.example.myapplication.databinding.ActivityListBinding
 import com.example.myapplication.lists.adapters.ViewPagersAdapter
 import com.example.myapplication.lists.fragments.FragTwo
+import com.example.myapplication.lists.viewmodel.EmployeeVM
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ListActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityListBinding.inflate(layoutInflater)
+    }
+
+    private val employeeViewModel: EmployeeVM by viewModels {
+        EmployeeVM.WordViewModelFactory((application as EmployeeApp).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +39,6 @@ class ListActivity : AppCompatActivity() {
         val adapter = ViewPagersAdapter(this)
         binding.viewPager.adapter = adapter
     }
-
 
 
 }

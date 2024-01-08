@@ -7,16 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.EmployeeApp
 import com.example.myapplication.Utils.LiveDataUtil
 import com.example.myapplication.dao.EMDatabase
 import com.example.myapplication.databinding.FragmentFragTwoBinding
 import com.example.myapplication.lists.adapters.LikedDataAdapter
 import com.example.myapplication.lists.viewmodel.EmployeeVM
 import com.google.gson.Gson
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class FragTwo : Fragment() {
@@ -24,7 +22,9 @@ class FragTwo : Fragment() {
         FragmentFragTwoBinding.inflate(layoutInflater);
     }
 
-    private val employeeVM by viewModels<EmployeeVM>()
+    private val employeeViewModel: EmployeeVM by viewModels {
+        EmployeeVM.WordViewModelFactory((requireActivity() as EmployeeApp).repository)
+    }
 
 
     override fun onCreateView(
@@ -42,18 +42,23 @@ class FragTwo : Fragment() {
     }
 
     private fun initObserver() {
-        employeeVM.likedData.observe(this){
-            Log.e( "initObserver: ",Gson().toJson(it) )
-
-        }
-        LiveDataUtil.observeOnce(EMDatabase.getDatabase(requireContext()).employeeDAO().getAllEmployeeDetails()
-        ) {
+        employeeViewModel.emData.observe(this) {
+            Log.e("initObserver: ", Gson().toJson(it))
             binding.rvLikedData.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = LikedDataAdapter(it)
             }
-//
+
         }
+//        LiveDataUtil.observeOnce(
+//            EMDatabase.getDatabase(requireContext()).employeeDAO().getAllEmployeeDetails()
+//        ) {
+//            binding.rvLikedData.apply {
+//                layoutManager = LinearLayoutManager(requireContext())
+//                adapter = LikedDataAdapter(it)
+//            }
+////
+//        }
 
 
     }

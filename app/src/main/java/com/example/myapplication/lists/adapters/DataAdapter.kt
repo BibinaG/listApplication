@@ -3,7 +3,9 @@ package com.example.myapplication.lists.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.databinding.EmpoloyeListLayoutBinding
 import com.example.myapplication.lists.EmployeData
 
@@ -14,6 +16,7 @@ class DataAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             EmpoloyeListLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -50,11 +53,18 @@ class DataAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
 
+
+
     }
 
-    fun addItems(newItems: EmployeData) {
-        val list = mList.toMutableList()
-        list.addAll(listOf(newItems))
-        mList = list
-    }
+//    class WordsComparator : DiffUtil.ItemCallback<EmployeData>() {
+//        override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
+//            return oldItem === newItem
+//        }
+//
+//        override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
+//            return oldItem.word == newItem.word
+//        }
+//    }
+
 }

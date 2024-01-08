@@ -9,7 +9,7 @@ import com.example.myapplication.lists.EmployeData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [EmployeData::class], version = 1, exportSchema = false)
+@Database(entities = [EmployeData::class], version = 1, exportSchema = true)
 abstract class EMDatabase : RoomDatabase() {
     abstract fun employeeDAO(): EmployeeDAO
     private class EmployeeDatabaseCallback(
@@ -25,12 +25,13 @@ abstract class EMDatabase : RoomDatabase() {
             }
         }
     }
+    //To delete all content and repopulate the database whenever the app is created
 
     companion object {
         @Volatile
         private var INSTANCE: EMDatabase? = null
 
-        fun getDatabase(context: Context): EMDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): EMDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
@@ -38,14 +39,12 @@ abstract class EMDatabase : RoomDatabase() {
                     context.applicationContext,
                     EMDatabase::class.java,
                     "em_database"
-                ).build()
+                ).addCallback(EmployeeDatabaseCallback(scope=scope)).build()
                 INSTANCE = instance
                 // return instance
                 instance
             }
         }
-
-
 
 
     }

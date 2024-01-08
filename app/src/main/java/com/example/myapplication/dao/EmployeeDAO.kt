@@ -11,7 +11,7 @@ interface EmployeeDAO {
     suspend fun insertIntoEMData(emData: EmployeData)
 
     @Query("SELECT * FROM Employee")
-    fun getAllEmployeeDetails(): LiveData<List<EmployeData>>
+    fun getAllEmployeeDetails(): Flow<List<EmployeData>>
 
     @Query("DELETE FROM Employee")
     suspend fun deleteAll()

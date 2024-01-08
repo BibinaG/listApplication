@@ -8,20 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.EmployeeApp
 import com.example.myapplication.UiState
-import com.example.myapplication.dao.EMDatabase
 import com.example.myapplication.databinding.FragmentFragOneBinding
 import com.example.myapplication.lists.EmployeData
 import com.example.myapplication.lists.adapters.DataAdapter
 import com.example.myapplication.lists.viewmodel.EmployeeVM
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class FragOne : Fragment() {
     private lateinit var adapter: DataAdapter
     private val employeeViewModel by viewModels<EmployeeVM>()
+
+
 
 
     private val binding by lazy {
@@ -76,14 +75,14 @@ class FragOne : Fragment() {
                 mList = dataList
             ) { clickedData ->
                 Toast.makeText(requireContext(), "Liked Employee", Toast.LENGTH_SHORT).show()
-                employeeViewModel.insertValueInDatabase(clickedData)
+                employeeViewModel.insert(clickedData)
 //                employeeViewModel.addData(clickedData)
-                GlobalScope.launch(Dispatchers.IO) {
-                    EMDatabase.getDatabase(requireContext()).employeeDAO()
-                        .insertIntoEMData(clickedData)
-
-
-                }
+//                GlobalScope.launch(Dispatchers.IO) {
+//                    EMDatabase.getDatabase(requireContext()).employeeDAO()
+//                        .insertIntoEMData(clickedData)
+//
+//
+//                }
 
             }
 
