@@ -1,7 +1,5 @@
 package com.example.myapplication.lists.repo
 
-import android.app.Application
-import androidx.lifecycle.LiveData
 import com.example.myapplication.UiState
 import com.example.myapplication.dao.EmployeeDAO
 import com.example.myapplication.handler.doTryCatch
@@ -12,7 +10,6 @@ import com.example.myapplication.pagination.network.ApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import java.nio.channels.FileLock
 
 
 class EmployeeRepo(private val employeeDAO: EmployeeDAO) {
@@ -25,7 +22,7 @@ class EmployeeRepo(private val employeeDAO: EmployeeDAO) {
         }
     }
 
-    val shipments: Flow<List<EmployeData>> = employeeDAO.getAllEmployeeDetails()
+    val employeeData: Flow<List<EmployeData>> = employeeDAO.getAllEmployeeDetails()
 
     suspend fun insert(emData: EmployeData) {
         employeeDAO.insertIntoEMData(emData)
@@ -33,8 +30,6 @@ class EmployeeRepo(private val employeeDAO: EmployeeDAO) {
 }
 
 
-// Room executes all queries on a separate thread.
-// Observed LiveData will notify the observer when the data has changed.
 
 
 

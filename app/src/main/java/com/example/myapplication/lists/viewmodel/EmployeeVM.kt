@@ -20,9 +20,9 @@ class EmployeeVM(private val repo: EmployeeRepo) : ViewModel() {
     }
 
 
-    val emData: LiveData<List<EmployeData>> = repo.shipments.asLiveData()
+    val emData: LiveData<List<EmployeData>> = repo.employeeData.asLiveData()
 
-    fun insert(word: EmployeData) = viewModelScope.launch {
+    fun insertDatabase(word: EmployeData) = viewModelScope.launch {
         repo.insert(word)
     }
 
