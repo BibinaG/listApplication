@@ -18,10 +18,6 @@ class ListActivity : AppCompatActivity() {
         ActivityListBinding.inflate(layoutInflater)
     }
 
-    private val employeeViewModel: EmployeeVM by viewModels {
-        EmployeeVM.WordViewModelFactory((application as EmployeeApp).repository)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

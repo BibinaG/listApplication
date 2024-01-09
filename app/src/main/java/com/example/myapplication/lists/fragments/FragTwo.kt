@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.EmployeeApp
-import com.example.myapplication.Utils.LiveDataUtil
-import com.example.myapplication.dao.EMDatabase
 import com.example.myapplication.databinding.FragmentFragTwoBinding
 import com.example.myapplication.lists.adapters.LikedDataAdapter
 import com.example.myapplication.lists.viewmodel.EmployeeVM
@@ -23,7 +21,7 @@ class FragTwo : Fragment() {
     }
 
     private val employeeViewModel: EmployeeVM by viewModels {
-        EmployeeVM.WordViewModelFactory((requireActivity() as EmployeeApp).repository)
+        EmployeeVM.WordViewModelFactory((requireActivity().application as EmployeeApp).repository)
     }
 
 

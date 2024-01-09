@@ -9,7 +9,7 @@ import com.example.myapplication.lists.EmployeData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [EmployeData::class], version = 1, exportSchema = true)
+@Database(entities = [EmployeData::class], version = 1, exportSchema = false)
 abstract class EMDatabase : RoomDatabase() {
     abstract fun employeeDAO(): EmployeeDAO
     private class EmployeeDatabaseCallback(

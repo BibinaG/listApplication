@@ -1,4 +1,4 @@
-package com.example.myapplication.Utils;
+package com.example.myapplication.lists.repo.Utils;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;

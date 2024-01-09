@@ -1,7 +1,5 @@
 package com.example.myapplication.lists.viewmodel
 
-import android.app.Application
-import android.content.Context
 import androidx.lifecycle.*
 import com.example.myapplication.UiState
 import com.example.myapplication.lists.DummyResponse
@@ -10,8 +8,6 @@ import com.example.myapplication.lists.repo.EmployeeRepo
 import kotlinx.coroutines.launch
 
 class EmployeeVM(private val repo: EmployeeRepo) : ViewModel() {
-
-
     private val _employeeData = MutableLiveData<UiState<DummyResponse>>()
     val employeeDetails: LiveData<UiState<DummyResponse>> = _employeeData
 
@@ -40,6 +36,7 @@ class EmployeeVM(private val repo: EmployeeRepo) : ViewModel() {
             throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
+
 
 
 
